@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#128225; Amateur Satellite Reception</title>
+<link id="theme" rel="stylesheet" href="../styles/night.css">
+<link rel="stylesheet" href="../styles/slider.css">
+</head>
+
+<body>
+<h1>&#128225; Amateur Satellite Reception</h1>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<hr>
+<h2>Introduction</h2>
+<p>In the last year or so, I really took an interest in receiving weather satellite data and imagery from a series of satellites that broadcast this information freely.</p>
+<p>I knew about software defined radio, but didn't expect you could receive images from satellites directly using ~$30 of hardware!</p>
+<p>For a start, in this post I'll talk about the NOAA-POES and METEOR-M series of satellites, the ones which I successfully received imagery from.</p>
+<h2>Satellites, yay!</h2>
+<p>The NOAA POES series of satellites are the easiest to receive among all other weather satellites. Their analogue, robust and powerful signal is easy to receive and "forgives" small errors or interference.</p>
+<p><img src="../images/noaa.jpg" style="width: 50%;"/></p>
+<p>The POES (Polar Operational Environmental Satellites) satellites are a series of sun-synchronous, polar-orbiting satellites that orbit the Earth at around 800 km above the ground. Their orbit is chosen so they pass over the same ground location at roughly the same solar time each day, twice per day.Three satellites are currently operating: NOAA 15, NOAA 18 and NOAA 19.</p>
+<p>There is also the METEOR-M series of satellites, which allow you to receive excellent images with very little effort. </p>
+<p>The METEOR satellites are a series of sun-synchronous, polar-orbiting satellites that orbit the Earth at around 800 km above the ground. Their orbit is chosen so they pass over the same ground location at roughly the same solar time each day, twice per day. Two satellites are currently operational in the LRPT mode: METEOR-M N°2-3 and N°2-4</p>
+<p><img src="../images/meteor.png" style="width: 50%;"/></p>
+<p>The major difference between the 2 series of satellites besides the frequencies is that NOAA POES satellites transmit their signal modulated as <a href="https://www.sigidwiki.com/wiki/APT">APT (Automatic Picture Transmission)</a>, which in itself is analog, while the signal for the METEOR-M series is digital, called <a href="https://www.sigidwiki.com/wiki/Low_Rate_Picture_Transmission_(LRPT)">LRPT (Low Rate Picture Transmission)</a>.</p>
+<div style="display: flex">
+<div style="flex: 50%;padding: 5px;">
+<figure>
+<img src="../images/apt.jpg" style="width: 60%"/><br/>
+<figcaption style="text-align: center">APT signal on waterfall</figcaption>
+</figure>
+</div>
+<div style="flex: 50%;padding: 5px;">
+<figure>
+<img src="../images/lrpt.jpg" style="width: 60%"/><br/>
+<figcaption style="text-align: center">LRPT signal on waterfall</figcaption>
+</figure>
+</div>
+</div>
+<h2>Frequencies</h2>
+<p>
+<p>Here is a list of frequencies for the satellites mentioned above.</p>
+<p>
+<table>
+<tr><th>Satellite</th><th>Frequency</th><th>Mode</th><th>Bandwidth</th><th>Polarisation</th>
+</tr><tr><td>NOAA 15</td><td>137.62 MHz</td><td>FM</td><td>50 kHz</td><td>RHCP</td>
+</tr><tr><td>NOAA 18</td><td>137.9125 MHz</td><td>FM</td><td>50 kHz</td><td>RHCP</td>
+</tr><tr><td>NOAA 19</td><td>137.1 MHz</td><td>FM</td><td>50 kHz</td><td>RHCP</td>
+</tr><tr><td>METEOR-M N°2-3</td><td>137.9 MHz</td><td>OQPSK 72k</td><td>100 kHz</td><td>RHCP</td>
+</tr><tr><td>METEOR-M N°2-4</td><td>137.9 MHz</td><td>OQPSK 72k</td><td>100 kHz</td><td>RHCP</td>
+</tr></table>
+</p>
+<p style="text-align: center">(check out the dipole length calculator from the <a href="airband.html">amateur radio post</a>)</p>
+<h2>Hardware</h2>
+<h3>SDR</h3>
+<p> To receive data from such satellites, there is some needed hardware. The receiving hardware is called Software Defined Radio (SDR). I used the <a href="https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/">RTL-SDR V3</a></p>
+<p><img src="../images/rtl-sdr.png" style="width: 50%;"/></p>
+<h3>Antenna</h3>
+<p>An antenna is also necessary, as we are working with radio signals. I used the dipole antenna from the RTL-SDR V3 kit. Custom dipole antennas can be made, just make sure to use the proper length for the dipole legs and an 120 degree angle between the dipole legs.</p>
+<p>Here are some examples:</p>
+<p>
+<ul>
+<li>custom built dipole antenna suitable for APT/LRPT reception (left picture)</li>
+<li>the RTL-SDR V3 kit, containing a sizeable dipole antenna, which I used (right picture)</li>
+</ul>
+</p>
+<div style="display: flex">
+<div style="flex: 50%;padding: 5px;">
+<img src="../images/v-dipole.jpg" style="width: 100%"/>
+</div>
+<div style="flex: 50%;padding: 5px;">
+<img src="../images/rtl-dipole.png" style="width: 65%"/>
+</div>
+</div>
+<h3>LNA</h3>
+<p>An LNA (Low Noise Amplifier) is optional, because the signal from the satellites is pretty strong and there is line of sight (LOS) between us and the satellite. I used a LNA and a bandpass filter (only lets signals at a specific range pass through) for 137MHz (actually it is a frequency range 137MHz - ~138MHz) to increase the received signal quality.</p>
+<p>Here is the LNA+bandpass filter used: </p>
+<p><img src="../images/lna.jpg" style="width: 50%"/></p>
+<h2>Software</h2>
+<p>For the software side of things, I used <a href="https://github.com/AlexandreRouma/SDRPlusPlus">SDR++</a> for recording, because it is cross-platform and recommended by other enthusiasts, and <a href="https://github.com/SatDump/SatDump">SatDump</a> for processing the signal. (give them a star on GitHub please!)</p>
+<h3>Pass prediction</h3>
+<p>As I mentioned, these satellites have a sun-synchronous polar orbit, meaning they pass the same spot on Earth twice a day, scanning the Earth from north to south or vice-versa.</p>
+<p>So it is possible to predict when the satellite is going to be overhead, thus being possible to receive its transmission.</p>
+<p>I prefer to use my phone to see the predictions, so I use <a href="https://github.com/rt-bishop/Look4Sat">Look4Sat</a>.</p>
+<p><img src="../images/look4sat.jpg" style="width: 20%"/></p>
+<h2>Results</h2>
+<p>Here are some images received by me and my friends (along with a cool clip)</p>
+<div class="slider">
+<div>
+<img id="satrx-img" style="width: 70%" src="../images/satrx/1.jpg"/>
+</div>
+<div style="display: flex;">
+<div style="flex: 50%;padding: 5px;">
+<button style="float: right;" class="btn" onclick="prev()">&larr;</button>
+</div>
+<div style="flex: 50%;padding: 5px;">
+<button style="float: left;" class="btn" onclick="next()">&rarr;</button>
+</div>
+</div>
+<br/><br/>
+<video width="700" height="540" controls>
+<source src="../images/satrx/vid.mp4" type="video/mp4">
+</video>
+<br/><br/>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<button id="theme-toggle" style="position: fixed;top: 10px;right: 10px;cursor: pointer;font-size: 2.0rem;background: none;border: none;outline: none;font-family: Arial;">&#9728;</button>
+<a href="https://time.is/" id="time" style="position: fixed;top: 10px;left: 10px;font-size: 1.5rem;">Wait!</a>
+
+
+<script src="../js/theme.js"></script>
+<script src="../js/img.js"></script>
+<script src="../js/time.js"></script>
+</body>
+</html>

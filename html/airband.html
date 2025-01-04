@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#128225; Amateur Radio</title>
+<link id="theme" rel="stylesheet" href="../styles/night.css">
+<link rel="stylesheet" href="../styles/slider.css">
+</head>
+
+<body>
+<h1>&#128225; Amateur Radio</h1>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<hr>
+<h2>Introduction</h2>
+<p>Since I came to Iasi, me and my friend (who is also pretty passionate about amateur radio) really wanted to check out airband traffic, because we live <i>relatively</i> close to the Iasi Airport.</p>
+<p>But first of all, let me make a quick introduction to amateur radio and all the shenanigans related to it.</p>
+<h2>What is Amateur Radio?</h2>
+<p>To directly quote Wikipedia, "<a href="https://en.wikipedia.org/wiki/Amateur_radio">Amateur radio</a>, also known as ham radio, is the use of the radio frequency spectrum for purposes of non-commercial exchange of messages, wireless experimentation, self-training, private recreation, radiosport, contesting, and emergency communications."</p>
+<p>Because the radio space is regulated, to be able to transmit, one needs a amateur radio license, just like a driving license. To get such license, one needs to take a certain exam for the category they wish to use; each category allowing the owner of the license to transmit at different power rates.</p>
+<p>Another cool thing about amateur radio communications is the fact that each amater radio operator (also called "ham radio operator") gets a <a href="https://en.wikipedia.org/wiki/Amateur_radio_call_signs">callsign</a> that is used to identify the operator. Each operator is required by law to announce their callsign at the beginning of each transmission.</p>
+<p>Well, I want to get my ham radio license, but that will have to wait because of college :(</p>
+<figure>
+<img src="../images/airband/license.jpg" style="width: 60%"/><br/>
+<figcaption style="text-align: center">Example of a ham radio operator license</figcaption>
+</figure>
+<br/>
+<h2>Then what is airband?</h2>
+<p><a href="https://en.wikipedia.org/wiki/Airband">Airband</a> is the name for a group of frequencies allocated to radio communications for aviation.</p>
+<p>Because there is an airport nearby, we thought we should be able to receive airband traffic quite easily (props to my friend for his idea).</p>
+<p>So the software-defined radios become handy again (just like in the <a href="satrx.html">amateur satellite reception post</a>).</p>
+<p>We tuned our dipole antennas (check out the calculator under this paragraph) to match the frequency used by the Iasi Internation Airport <a href="https://skyvector.com/airport/LRIA/Iasi-Airport">(119.95 MHz)</a>, hooked up the <a href="https://www.rtl-sdr.com/rtl-sdr-blog-v-3-dongles-user-guide/">RTL-SDR V3</a> to the computer along with a LNA to increase our signal gain.</p>
+<h3 style="text-align: center">Here is a little calculator for dipole length
+<br/>(1 dipole leg length, taking into account the end effect<sup><a href="https://www.dj0ip.de/ricki-leaks/ocfd-end-effect/">[1]</a></sup>)</h3>
+<form style="text-align: center">
+<label for="freq">Frequency(in MHz with decimals):</label>
+<input type="text" id="freq" name="freq">
+<button type="button" id="calc">Calculate</button>
+</form>
+<h3 id="result" style="text-align: center"></h3>
+<h2>Well, here you go</h2>
+<p>Now you can check out what we received from the Iasi International Airport airband frequency below (props to my friends for the footage):</p>
+<p style="text-align: center;">(use the arrow keys to change the video file)</p>
+<video id="airband-vid" width="700" height="460" controls>
+<source id="airband-vid" src="../images/airband/1.mp4" type="video/mp4">
+</video>
+<div style="display: flex;">
+<div style="flex: 50%;padding: 5px;">
+<button style="float: right;" class="btn" onclick="prev()">&larr;</button>
+</div>
+<div style="flex: 50%;padding: 5px;">
+<button style="float: left;" class="btn" onclick="next()">&rarr;</button>
+</div>
+</div>
+
+<br/>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<button id="theme-toggle" style="position: fixed;top: 10px;right: 10px;cursor: pointer;font-size: 2.0rem;background: none;border: none;outline: none;font-family: Arial;">&#9728;</button>
+<a href="https://time.is/" id="time" style="position: fixed;top: 10px;left: 10px;font-size: 1.5rem;">Wait!</a>
+
+<script src="../js/theme.js"></script>
+<script src="../js/dipole.js"></script>
+<script src="../js/vid.js"></script>
+<script src="../js/time.js"></script>
+
+</body>
+</html>

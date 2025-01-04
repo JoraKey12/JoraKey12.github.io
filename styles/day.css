@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Monocraft';
+  src: url('../fonts/Monocraft/Monocraft.ttf');
+}
+
+* {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: Monocraft;
+}
+
+body {
+  background-color: #f5f5f5;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 5%;
+  text-align: left;
+}
+
+h1 {
+  color: #3a3a8f;
+}
+h2 {
+  color: #3a3a8f;
+}
+h3 {
+  color: #3a3a8f;
+}
+
+a:link {
+  color: #1a73e8;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #1a73e8;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: #c1121f;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #f4a261;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a.red:link {
+  color: #b22222;
+  background-color: transparent;
+  text-decoration: none;
+}
+a.red:visited {
+  color: #b22222;
+  background-color: transparent;
+  text-decoration: none;
+}
+a.red:hover {
+  color: #6a5acd;
+  background-color: transparent;
+  text-decoration: none;
+}
+a.red:active {
+  color: #ff4500;
+  background-color: transparent;
+  text-decoration: none;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  border: 2px solid black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+li + li {
+  margin-top: 10px;
+}

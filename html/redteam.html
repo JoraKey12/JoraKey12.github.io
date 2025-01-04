@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>&#128187; Pentesting and Redteaming</title>
+<link id="theme" rel="stylesheet" href="../styles/night.css">
+</head>
+
+<body>
+<h1>&#128187; Pentesting and Redteaming</h1>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<hr>
+<h2>Introduction</h2>
+<p>One of my interests is cybersecurity and the whole landscape related to computers and smart devices.</p>
+<p>My first encounter with the world of "hacking" was cheating in videogames (yeah I know it sounds silly). I mainly used "cheats"(computer programs that modify the game, giving you an unfair advantage) on games like Minecraft.</p>
+<p>Minecraft always fascinated me (as you can see from the font used on the site), especially the PvP (player vs. player) gamemodes, so I started using free cheats because I was a teenager, and like many, couldn't afford paid cheats.</p>
+<h2>Entering the real world</h2>
+<p>Growing up, I took an interest in <a href="https://en.wikipedia.org/wiki/Wi-Fi">WiFi</a> and its security. Upon many hours of googling and watching YouTube tutorials, I got myself a Raspberry Pi 3B+, which is a single-board computer (SBC), installed the well-known <a href="https://stallman-copypasta.github.io/">GNU/Linux</a> distribution <a href="https://www.kali.org/">Kali Linux</a></p>
+<p>Firing up <a href="https://www.aircrack-ng.org/doku.php?id=besside-ng">besside-ng</a> from the aircrack-ng suite and cracking the WEP passphrase (<i>with permission from the owner of the network of course</i>) of a vulnerable network, I started to understand that things are not so secure as they claim.</p>
+<figure>
+<img src="../images/besside-ng.png" style="width: 60%"/><br/>
+<figcaption style="text-align: center">Example output from besside-ng</figcaption>
+</figure>
+<br/>
+<h2>HACK THE PLANET<sup><a href="https://en.wikipedia.org/wiki/Hackers_(film)">[1]</a></sub></h2>
+<p>Well, as expected, I explored more and more tools offered in Kali Linux, like <a href="https://github.com/rapid7/metasploit-framework">metasploit</a>.</p>
+<p>Metasploit remains one of my favorites, because it offers an arsenal of exploits and payloads for each and every device.</p>
+<p>If I had to choose one of my favorite exploit, it would have to be <a href="https://en.wikipedia.org/wiki/EternalBlue">EternalBlue</a></p>
+<p>Just think for a second, this is a leaked exploit from the NSA; meaning the government is hoarding <a href="https://en.wikipedia.org/wiki/Zero-day_vulnerability">0-days</a> and using them againsts its citizens for spying and many other purposes.</p>
+<p>Of course I had to troll a little, so once in a while the school computers running unpatched Windows 7 were <a href="https://en.wikipedia.org/wiki/Blue_screen_of_death">BSODing</a> <i>unexpectedly </i>(don't worry the teacher knew and we patched them after we finished highschool).</p>
+<figure>
+<img src="../images/eternalblue.png" style="width: 60%"/><br/>
+<figcaption style="text-align: center">Metasploit output after the execution of the EternalBlue exploit (and DoublePulsar as payload)</figcaption>
+</figure>
+<br/>
+<h2>A little story</h2>
+<p>So let me ask a question: Do you think 6 digits is secure for a password?</p>
+<p>It is not.</p>
+<p>From junior to senior year in highschool, we had some sort of online quiz game that was played by many highschoolers in my country.</p>
+<p>As it turns out, to access the game, every team receives a link, and everyone gets a 6-digit code THAT DOES NOT CHANGE.</p>
+<p>An ordinary person might think that its impossible to try every combination by hand; well it is.</p>
+<p>But we didn't try them by hand; we used a web fuzzer (<a href="https://github.com/ffuf/ffuf">ffuf</a>).</p>
+<p>Every code started with 1, so the total number of available codes was 9000000, which was easily bruteforce-able because the site didn't implement any kind of <a href="https://en.wikipedia.org/wiki/Rate_limiting">rate-limiting</a></p>
+<p>By now it is clear what can happen <i>if you can play as any team you want and how many times you want</i></p>
+<h2>Now?</h2>
+<p>Nowadays I'm stuck at home doing college homework :(</p>
+<p>But I enjoy breaking technology every now and then; I still <a href="https://en.wikipedia.org/wiki/PWN">pwn</a> <a href="https://tryhackme.com/">TryHackMe</a> machines to sharpen my skills.</p>
+<br/>
+<figure>
+<a href="https://tryhackme.com/r/p/mx1499"><img src="../images/thm.png" style="width: 30%"/></a><br/>
+<figcaption style="text-align: center">Click on the image</figcaption>
+</figure>
+<br/>
+<p><a href="../index.html">[Back to the main page]</a></p>
+
+<button id="theme-toggle" style="position: fixed;top: 10px;right: 10px;cursor: pointer;font-size: 2.0rem;background: none;border: none;outline: none;font-family: Arial;">&#9728;</button>
+<a href="https://time.is/" id="time" style="position: fixed;top: 10px;left: 10px;font-size: 1.5rem;">Wait!</a>
+
+<script src="../js/theme.js"></script>
+<script src="../js/time.js"></script>
+
+</body>
+</html>

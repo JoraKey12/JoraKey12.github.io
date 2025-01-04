@@ -1,9 +1,10 @@
 var slider_vid = document.getElementById("airband-vid");
-var i = 1;
-var n = 3;
+var vids = ["P7620JwsmHI", "rjgSTyDUEOo", "6xueSga-PYc "];
+var i = 0;
+var n = 2;
 
 function prev(){
- if(i <= 1) {
+ if(i <= 0) {
  i = n+1;
 }
 i--;
@@ -19,5 +20,5 @@ setVid();
 }
 
 function setVid(){
-slider_vid.setAttribute("src", "../images/airband/"+i+".mp4");
+slider_vid.setAttribute("src", "https://www.youtube.com/embed/"+vids[i]);
 }

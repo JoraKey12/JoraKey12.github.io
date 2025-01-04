@@ -81,7 +81,7 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-video {
+video,iframe {
   display: block;
   margin-left: auto;
   margin-right: auto;
